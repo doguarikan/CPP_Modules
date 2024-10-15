@@ -6,13 +6,12 @@
 
 class Contact {
 
-	public:
-		std::string name;
-		std::string surname;
-		std::string nick_name;
-		std::string phone_number;
-		std::string	darkest_secret;
-		int index;
+	std::string name;
+	std::string surname;
+	std::string nick_name;
+	std::string phone_number;
+	std::string darkest_secret;
+	int index;
 
 };
 
