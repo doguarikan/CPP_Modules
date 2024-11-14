@@ -6,12 +6,12 @@
 class Phonebook {
 
 	Contact contacts[8];
-
+	int index;
 	public:
-		
-		Phonebook() {
-			
-		}
+		void add();
+		void search();
+		void exit();
+		Phonebook();
 
 };
 
