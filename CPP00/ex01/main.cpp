@@ -13,17 +13,13 @@ int main() {
         
         std::cin >> input;
 
-        if(input == "ADD") {
+        if(input == "ADD")
             book.add();
-        }
-        else if(input == "SEARCH") {
+        else if(input == "SEARCH")
             book.search();
-        }
-        else if(input == "EXIT") {
+        else if(input == "EXIT")
             book.exit();
-        }
-        else {
+        else
             std::cout << "Please enter only commands" << std::endl;
-        }
     }
 }

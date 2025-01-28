@@ -7,6 +7,7 @@ class Phonebook {
 
 	Contact contacts[8];
 	int index;
+	int index_total;
 	public:
 		void add();
 		void search();
