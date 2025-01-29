@@ -12,6 +12,7 @@ class Phonebook {
 		void add();
 		void search();
 		void exit();
+		int check_index(std::string selected_num_str, int *selected_num);
 		Phonebook();
 
 };

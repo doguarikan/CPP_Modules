@@ -6,7 +6,8 @@ Phonebook::Phonebook() {
 }
 
 bool isNumeric(const std::string& str) {
-    for (std::size_t i = 0; i < str.length(); i++) {
+    for (std::size_t i = 0; i < str.length(); i++)
+    {
         if (!std::isdigit(str[i])) {
             return false;
         }
@@ -19,18 +20,39 @@ int stringToInt(const std::string& str) {
     bool isNegative = false;
     size_t i = 0;
 
-    if (!str.empty() && str[0] == '-') {
+    if (!str.empty() && str[0] == '-')
+    {
         isNegative = true;
         i = 1;
     }
 
-    for (; i < str.size(); ++i) {
+    for (; i < str.size(); ++i)
+    {
         result = result * 10 + (str[i] - '0');
     }
 
     return isNegative ? -result : result;
 }
 
+int Phonebook::check_index(std::string selected_num_str, int *selected_num)
+{
+    *selected_num = stringToInt(selected_num_str);
+    if(!isNumeric(selected_num_str) || selected_num_str.length() < 1)
+        return 1;
+    if(this->index_total > 8)
+    {
+        if(*selected_num > 8)
+            return 1;
+    }
+    else
+    {
+        if(*selected_num > this->index_total)
+            return 1;
+    }
+    if(*selected_num >= 8 && *selected_num <= 0)
+        return 1;
+    return 0;
+}
 
 void Phonebook::add() {
     std::string name;
@@ -42,8 +64,9 @@ void Phonebook::add() {
     if(this->index == 8)
         this->index = 0;
 
-    while(1) {
-        long unsigned int i = 0; // ????!!!!!! .length compare
+    while(1)
+    {
+        long unsigned int i = 0;
         std::cout << "Name: " << std::endl;
         std::cin >> name;
         std::cout << "Surname: " << std::endl;
@@ -54,14 +77,17 @@ void Phonebook::add() {
         {   
             std::cout << "Phone number: " << std::endl;
             std::cin >> phone_number;
-            while(1) {
-                if(!std::isdigit(phone_number[i])) {
+            while(1)
+            {
+                if(!std::isdigit(phone_number[i]))
+                {
                     std::cout << "Please enter number only" << std::endl;
                     break ;
                 }
                 else
                     i++;
-                if(i == phone_number.length()) {
+                if(i == phone_number.length())
+                {
                     err = 1;
                     break ;
                 }
@@ -91,7 +117,12 @@ void Phonebook::search() {
     //int index_search;
     //if(this->index >= 8)
     //    index_search = 8;
-    for(int i = 0; i < this->index_total; i++)
+    int print;
+    if(this->index_total > 8)
+        print = 8;
+    else
+        print = index_total;
+    for(int i = 0; i < print; i++)
     {
         std::cout << std::right << std::setw(10) << i << "|"; 
         if(this->contacts[i].getName().length() > 9)
@@ -109,35 +140,26 @@ void Phonebook::search() {
         this->contacts[i].index = i;
     }
     std::cout << "Please enter an index: ";
-    std::string index_selected;
     int selected_num = 0;
-    std::cin >> index_selected;
-    selected_num = stringToInt(index_selected);
-    while((!isNumeric(index_selected) || index_selected.length() < 1) && selected_num <= this->index_total) // girilen aranmak istenen sayı olamanyan bir index ise bos basıyor
+    std::string selected_num_str;
+    std::cin >> selected_num_str;
+    if(check_index(selected_num_str, &selected_num))
     {
-        std::cout << "Please enter valid index" << std::endl;
-        std::cin >> index_selected;
-        selected_num = stringToInt(index_selected);
-    }
-    if(selected_num >= 8)
-    {
-        while(selected_num >= 8)
+        std::cout << "Please enter valid index :";
+        std::cin >> selected_num_str;
+        while(check_index(selected_num_str, &selected_num))
         {
-            std::cout << "Please enter lower index than 8" << std::endl;
-            std::cin >> index_selected;
-            selected_num = stringToInt(index_selected);
+            std::cout << "Please enter valid index :";
+            std::cin >> selected_num_str;
         }
     }
-    else
-    {
-        std::cout << "------------------------------------" << std::endl;
-        std::cout << "Name : " << this->contacts[selected_num].getName() << std::endl;
-        std::cout << "Surname : " << this->contacts[selected_num].getSurname() << std::endl;
-        std::cout << "Nickname : " << this->contacts[selected_num].getNickName() << std::endl;
-        std::cout << "Phone Number : " << this->contacts[selected_num].getPhoneNumber() << std::endl;
-        std::cout << "Darkest secret : " << this->contacts[selected_num].getDarkestSecret() << std::endl;
-        std::cout << "------------------------------------" << std::endl;
-    }
+    std::cout << "------------------------------------" << std::endl;
+    std::cout << "Name : " << this->contacts[selected_num].getName() << std::endl;
+    std::cout << "Surname : " << this->contacts[selected_num].getSurname() << std::endl;
+    std::cout << "Nickname : " << this->contacts[selected_num].getNickName() << std::endl;
+    std::cout << "Phone Number : " << this->contacts[selected_num].getPhoneNumber() << std::endl;
+    std::cout << "Darkest secret : " << this->contacts[selected_num].getDarkestSecret() << std::endl;
+    std::cout << "------------------------------------" << std::endl;
 }
 
 void Phonebook::exit() {
