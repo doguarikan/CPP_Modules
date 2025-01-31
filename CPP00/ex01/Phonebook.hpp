@@ -11,10 +11,11 @@ class Phonebook {
 	public:
 		void add();
 		void search();
-		void exit();
 		int check_index(std::string selected_num_str, int *selected_num);
 		Phonebook();
-
 };
+
+int stringToInt(const std::string& str);
+bool isNumeric(const std::string& str);
 
 #endif
