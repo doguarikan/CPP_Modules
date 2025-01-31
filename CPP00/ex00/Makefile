@@ -10,7 +10,7 @@ all: $(NAME)
 $(NAME): $(FILE)
 	$(CC) $(CPPFLAGS) -o $(NAME) $(FILE)
 clean:
-	$(RM) -f *.o
+	$(RM) -f $(OBJECTS)
 fclean: clean
 	rm -rf $(NAME)
 re: fclean all
