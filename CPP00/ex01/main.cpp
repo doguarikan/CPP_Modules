@@ -30,5 +30,5 @@ int main() {
             return 0;
         else
             std::cout << "Please enter only commands" << std::endl;
-    } // eklenen libraryleri kontrol et
+    }
 }

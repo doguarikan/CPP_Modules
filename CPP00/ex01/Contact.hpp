@@ -13,7 +13,6 @@ class Contact {
 	std::string phone_number;
 	std::string darkest_secret;
 	
-
 	public:
 		void setName(const std::string name);
 		void setSurname(const std::string surname);

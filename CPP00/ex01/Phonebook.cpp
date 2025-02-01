@@ -111,10 +111,10 @@ void Phonebook::add() {
 }
 
 void Phonebook::search() {
-    std::cout << std::right << std::setw(10) << "index" << "|";
-    std::cout << std::right << std::setw(10) << "name" << "|";
-    std::cout << std::right << std::setw(10) << "surname" << "|";
-    std::cout << std::right << std::setw(10) << "nickname" << "|" << std::endl;
+    std::cout << std::setw(10) << "index" << "|";
+    std::cout << std::setw(10) << "name" << "|";
+    std::cout << std::setw(10) << "surname" << "|";
+    std::cout << std::setw(10) << "nickname" << "|" << std::endl;
     std::cout << "--------------------------------------------" << std::endl;
 
     int print;
@@ -124,19 +124,19 @@ void Phonebook::search() {
         print = index_total;
     for(int i = 0; i < print; i++)
     {
-        std::cout << std::right << std::setw(10) << i << "|"; 
+        std::cout << std::setw(10) << i << "|"; 
         if(this->contacts[i].getName().length() > 9)
-            std::cout << std::right << std::setw(10) << this->contacts[i].getName().substr(0, 9) << "." << "|";
+            std::cout << std::setw(10) << this->contacts[i].getName().substr(0,9) + "." << "|";
         else
-            std::cout << std::right << std::setw(10) << this->contacts[i].getName() << "|";
+            std::cout << std::setw(10) << this->contacts[i].getName() << "|";
         if(this->contacts[i].getSurname().length() > 9)
-            std::cout << std::right << std::setw(10) << this->contacts[i].getSurname().substr(0, 9) << "." << "|";
+            std::cout << std::setw(10) << this->contacts[i].getSurname().substr(0, 9) + "." << "|";
         else
-            std::cout << std::right << std::setw(10) << this->contacts[i].getSurname() << "|";
+            std::cout << std::setw(10) << this->contacts[i].getSurname() << "|";
         if(this->contacts[i].getNickName().length() > 9)
-            std::cout << std::right << std::setw(10) << this->contacts[i].getNickName().substr(0, 9) << "." << "|" << std::endl;
+            std::cout << std::setw(10) << this->contacts[i].getNickName().substr(0, 9) + "." << "|" << std::endl;
         else
-            std::cout << std::right << std::setw(10) << this->contacts[i].getNickName() << "|" << std::endl;
+            std::cout << std::setw(10) << this->contacts[i].getNickName() << "|" << std::endl;
         this->contacts[i].index = i;
     }
     std::cout << "Please enter an index: ";

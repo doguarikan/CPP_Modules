@@ -15,7 +15,4 @@ class Phonebook {
 		Phonebook();
 };
 
-int stringToInt(const std::string& str);
-bool isNumeric(const std::string& str);
-
 #endif
