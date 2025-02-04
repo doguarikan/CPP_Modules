@@ -1,6 +1,6 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 
-Phonebook::Phonebook() {
+PhoneBook::PhoneBook() {
 	this->index = 0;
     this->index_total = 0;
 }
@@ -34,7 +34,7 @@ int stringToInt(const std::string& str) {
     return isNegative ? -result : result;
 }
 
-int Phonebook::check_index(std::string selected_num_str, int *selected_num)
+int PhoneBook::check_index(std::string selected_num_str, int *selected_num)
 {
     *selected_num = stringToInt(selected_num_str);
     if(!isNumeric(selected_num_str) || selected_num_str.length() < 1)
@@ -51,12 +51,12 @@ int Phonebook::check_index(std::string selected_num_str, int *selected_num)
     }
     if(this->index_total == 0)
         return 1;
-    if(*selected_num >= 8 || *selected_num <= 0)
+    if(*selected_num >= 8 || *selected_num < 0)
         return 1;
     return 0;
 }
 
-void Phonebook::add() {
+void PhoneBook::add() {
     std::string name;
     std::string surname;
     std::string nick_name;
@@ -65,7 +65,6 @@ void Phonebook::add() {
     int err = 0;
     if(this->index == 8)
         this->index = 0;
-
     while(1)
     {
         long unsigned int i = 0;
@@ -101,16 +100,16 @@ void Phonebook::add() {
         std::cin >> darkest_secret;
         break ;
     }
-    Phonebook::contacts[this->index].setName(name);
-    Phonebook::contacts[this->index].setSurname(surname);
-    Phonebook::contacts[this->index].setNickName(nick_name);
-    Phonebook::contacts[this->index].setPhoneNumber(phone_number);
-    Phonebook::contacts[this->index].setDarkestSecret(darkest_secret);
+    PhoneBook::contacts[this->index].setName(name);
+    PhoneBook::contacts[this->index].setSurname(surname);
+    PhoneBook::contacts[this->index].setNickName(nick_name);
+    PhoneBook::contacts[this->index].setPhoneNumber(phone_number);
+    PhoneBook::contacts[this->index].setDarkestSecret(darkest_secret);
     this->index_total++;
     this->index++;
 }
 
-void Phonebook::search() {
+void PhoneBook::search() {
     std::cout << std::setw(10) << "index" << "|";
     std::cout << std::setw(10) << "name" << "|";
     std::cout << std::setw(10) << "surname" << "|";
