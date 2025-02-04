@@ -1,4 +1,4 @@
-#include "Phonebook.hpp"
+#include "PhoneBook.hpp"
 
 std::string toupper_string(const std::string &str) {
     std::string result = str;
@@ -11,7 +11,7 @@ std::string toupper_string(const std::string &str) {
 int main() {
     
     std::string input;
-    Phonebook book;
+    PhoneBook book;
 
     while(true) {
         

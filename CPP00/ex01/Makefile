@@ -1,10 +1,10 @@
-NAME = phone
+NAME = phonebook
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 CC = c++
 
-SRCS = main.cpp Phonebook.cpp Contact.cpp
+SRCS = main.cpp PhoneBook.cpp Contact.cpp
 
 all: $(NAME)
 
