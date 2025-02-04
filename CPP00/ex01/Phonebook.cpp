@@ -51,7 +51,7 @@ int Phonebook::check_index(std::string selected_num_str, int *selected_num)
     }
     if(this->index_total == 0)
         return 1;
-    if(*selected_num >= 8 && *selected_num <= 0)
+    if(*selected_num >= 8 || *selected_num <= 0)
         return 1;
     return 0;
 }
