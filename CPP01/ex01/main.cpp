@@ -1,8 +1,10 @@
 #include "Zombie.hpp"
 
 int main() {
-    Zombie *a = zombieHorde(6, "Zombie");
-    for(int i = 0; i < 6; i++) {
+    int n = 5;
+    Zombie *a = zombieHorde(n, "Zombie");
+    for(int i = 0; i < n; i++) {
         a[i].announce();
     }
-} // hata kontrolleri lazımm
+    delete []a;
+}

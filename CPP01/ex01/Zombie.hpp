@@ -8,7 +8,7 @@ class Zombie {
     std::string name;
     
     public:
-        Zombie(std::string name); // destructor lazım mı!!!!!!!!!!!!!!!
+        Zombie(std::string name);
         void announce();
         void setName(std::string name);
         Zombie();
