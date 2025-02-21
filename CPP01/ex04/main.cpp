@@ -29,7 +29,7 @@ int main(int argc, char **argv) {
     std::string str1 = argv[2];
     std::string str2 = argv[3];
 
-    std::ifstream readfl(readFileName);
+    std::ifstream readfl(readFileName.c_str());
     if(!readfl.is_open())
     {
         std::cout << "Error: Unable to open  file" << std::endl;
@@ -37,8 +37,8 @@ int main(int argc, char **argv) {
     }
 
     std::string writeFileName = readFileName + ".replace";
-    std::ofstream writefl(writeFileName);
-    if(!readfl.is_open())
+    std::ofstream writefl(writeFileName.c_str());
+    if(!writefl.is_open())
     {
         std::cout << "Error: Unable to create  file" << std::endl;
         readfl.close();
