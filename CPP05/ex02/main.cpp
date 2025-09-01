@@ -1,58 +1,54 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include <iostream>
 
 void testShrubberyCreationForm() {
-    std::cout << "=== ShrubberyCreationForm Test ===" << std::endl;
+    std::cout << "---ShrubberyCreationForm---" << std::endl;
+
     try {
-        Bureaucrat high("High", 1);
-        Bureaucrat low("Low", 150);
+        Bureaucrat king("King", 1);
+        Bureaucrat clown("Clown", 150);
         
         ShrubberyCreationForm shrubbery("home");
         std::cout << shrubbery << std::endl;
         
-        // Try to execute unsigned form
         try {
-            high.executeForm(shrubbery);
+            king.executeForm(shrubbery);
         } catch (const std::exception& e) {
-            std::cout << "Expected exception: " << e.what() << std::endl;
+            std::cerr << "Exception: " << e.what() << std::endl;
         }
         
-        // Sign and execute
-        high.signForm(shrubbery);
-        high.executeForm(shrubbery);
+        king.signForm(shrubbery);
+        king.executeForm(shrubbery);
         
-        // Try with low grade
         ShrubberyCreationForm shrubbery2("garden");
         try {
-            low.signForm(shrubbery2);
+            clown.signForm(shrubbery2);
         } catch (const std::exception& e) {
-            std::cout << "Expected exception: " << e.what() << std::endl;
+            std::cerr << "Exception: " << e.what() << std::endl;
         }
         
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
     }
+
     std::cout << std::endl;
 }
 
 void testRobotomyRequestForm() {
-    std::cout << "=== RobotomyRequestForm Test ===" << std::endl;
+    std::cout << "---RobotomyRequestForm---" << std::endl;
     try {
-        Bureaucrat president("President", 1);
-        RobotomyRequestForm robotomy("Bender");
+        Bureaucrat ceo("Ceo", 1);
+        RobotomyRequestForm walle("Wall-e");
         
-        std::cout << robotomy << std::endl;
+        std::cout << walle << std::endl;
         
-        president.signForm(robotomy);
+        ceo.signForm(walle);
         
-        // Try multiple times to see random success/failure
-        for (int i = 0; i < 5; i++) {
-            president.executeForm(robotomy);
-        }
+        for (int i = 0; i < 3; i++)
+            ceo.executeForm(walle);
         
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -61,24 +57,22 @@ void testRobotomyRequestForm() {
 }
 
 void testPresidentialPardonForm() {
-    std::cout << "=== PresidentialPardonForm Test ===" << std::endl;
+    std::cout << "---PresidentialPardonForm---" << std::endl;
     try {
-        Bureaucrat president("President", 1);
+        Bureaucrat boss("Boss", 1);
         Bureaucrat intern("Intern", 150);
         
         PresidentialPardonForm pardon("Arthur Dent");
         std::cout << pardon << std::endl;
         
-        // Try with insufficient grade
         try {
             intern.signForm(pardon);
         } catch (const std::exception& e) {
-            std::cout << "Expected exception: " << e.what() << std::endl;
+            std::cerr << "Exception: " << e.what() << std::endl;
         }
         
-        // Sign and execute with president
-        president.signForm(pardon);
-        president.executeForm(pardon);
+        boss.signForm(pardon);
+        boss.executeForm(pardon);
         
     } catch (const std::exception& e) {
         std::cerr << "Exception: " << e.what() << std::endl;
@@ -90,6 +84,5 @@ int main() {
     testShrubberyCreationForm();
     testRobotomyRequestForm();
     testPresidentialPardonForm();
-    
     return 0;
 }

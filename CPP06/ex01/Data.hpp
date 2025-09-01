@@ -7,15 +7,9 @@
 struct Data {
     std::string name;
     int age;
-    double salary;
-    
-    Data();
-    Data(const std::string& n, int a, double s);
-    Data(const Data& other);
-    Data& operator=(const Data& other);
-    ~Data();
-    
-    void display() const;
+    double height;
+    double weight;
+    bool isGoat;
 };
 
 #endif

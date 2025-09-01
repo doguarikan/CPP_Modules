@@ -1,6 +1,8 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
+Bureaucrat::Bureaucrat () : name("name"), grade(100) {}
+
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name(name), grade(grade) {
     if(grade < 1)
         throw GradeTooHighException();

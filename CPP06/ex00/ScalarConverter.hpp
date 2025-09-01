@@ -7,17 +7,17 @@
 #include <cstdlib>
 #include <iostream>
 #include <string>
+#include <iomanip> 
 
 
-class ScalarConverter
-{
-	ScalarConverter(void);
-	ScalarConverter(const ScalarConverter &copy);
-	virtual ~ScalarConverter(void);
-	ScalarConverter& operator=(const ScalarConverter &copy);
+class ScalarConverter {
+	ScalarConverter();
+	ScalarConverter(const ScalarConverter &other);
+	ScalarConverter& operator=(const ScalarConverter &other);
+	virtual ~ScalarConverter();
 
 	public:
-		static void convert(std::string const& value);
+		static void convert(std::string const& literal);
 };
 
 #endif

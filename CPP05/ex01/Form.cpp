@@ -1,7 +1,9 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(const std::string &name, int gradeExec, int gradeSign) : name(name), isSigned(false), gradeToSign(gradeSign), gradeToExecute(gradeExec) {
+Form::Form() : name("name"), isSigned(false), gradeToSign(100), gradeToExecute(50) {}
+
+Form::Form(const std::string &name, int gradeSign, int gradeExec) : name(name), isSigned(false), gradeToSign(gradeSign), gradeToExecute(gradeExec) {
     if(gradeSign < 1 || gradeExec < 1)
         throw GradeTooHighException();
     if(gradeSign > 150 || gradeExec > 150)
@@ -9,7 +11,7 @@ Form::Form(const std::string &name, int gradeExec, int gradeSign) : name(name), 
 }
 
 Form::Form(const Form &other): name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign),
-	  gradeToExecute(other.gradeToExecute) {}
+	gradeToExecute(other.gradeToExecute) {}
 
 Form &Form::operator=(const Form &other) {
 	if (this != &other)
@@ -38,8 +40,7 @@ const char *Form::GradeTooLowException::what() const throw() { return "Grade too
 const char *Form::GradeTooHighException::what() const throw() { return "Grade too high!!"; }
 
 std::ostream &operator<<(std::ostream &os, const Form &form) {
-	os << "Form " << form.getName() << " (Required sign grade: " << form.getGradeRequiredToSign()
-	   << ", Required exec grade: " << form.getGradeRequiredToExecute()
-	   << ") is " << (form.getIsSigned() ? "signed" : "not signed") << ".";
+	os << "Form " << form.getName() << " (Required sign grade: " << form.getGradeRequiredToSign() << ", Required exec grade: " 
+		<< form.getGradeRequiredToExecute() << ") is " << (form.getIsSigned() ? "signed" : "not signed") << ".";
 	return os;
 }

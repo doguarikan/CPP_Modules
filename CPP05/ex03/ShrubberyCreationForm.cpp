@@ -24,16 +24,13 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const {
     if(!outfile.is_open())
         throw FileOpenException();
         
-    outfile << "      /\\" << std::endl;
-    outfile << "     /\\*\\" << std::endl;
-    outfile << "    /\\O\\*\\" << std::endl;
-    outfile << "   /*/\\/\\*\\" << std::endl;
-    outfile << "  /\\O\\/\\*\\/\\" << std::endl;
-    outfile << " /\\*\\/\\*\\/\\O\\" << std::endl;
-    outfile << "/\\O\\/\\*\\/\\*\\/\\" << std::endl;
-    outfile << "      ||      " << std::endl;
-    outfile << "      ||      " << std::endl;
-    outfile << "      ||      " << std::endl;
+    const int width = 29;
+    for (int i = 1; i <= width; i += 2)
+        outfile << std::string((width - i) / 2, ' ') << std::string(i, '*') << std::endl;
+
+    for (int i = 0; i < width / 5; ++i)
+        outfile << std::string((width - 3) / 2, ' ') << "|||" << std::endl;
+
     outfile.close();
 }
 

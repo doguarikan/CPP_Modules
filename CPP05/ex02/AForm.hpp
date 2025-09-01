@@ -13,7 +13,8 @@ class AForm {
     const int gradeToExecute;
     
     public:
-        AForm(const std::string &name, int gradeExec, int gradeSign);
+        AForm();
+        AForm(const std::string &name, int gradeSign, int gradeExec);
         AForm(const AForm &other);
 	    AForm &operator=(const AForm &other);
         virtual ~AForm();

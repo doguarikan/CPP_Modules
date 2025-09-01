@@ -2,48 +2,62 @@
 #include "Form.hpp"
 
 void testFormConstruction() {
-	std::cout << "=== Form Construction Tests ===" << std::endl;
-	try {
-		std::cout << "Testing valid grades:" << std::endl;
-		Form f1("Contract", 75, 50);
-		std::cout << f1 << std::endl;
-
-		std::cout << "\nTesting too high grade:" << std::endl;
-		Form f2("Invalid", 0, 50);
-	}
-	catch (std::exception &e) {
-		std::cerr << "Exception caught: " << e.what() << std::endl;
-	}
+	std::cout << "---Form Construction---" << std::endl;
 
 	try {
-		std::cout << "\nTesting too low grade:" << std::endl;
-		Form f3("Invalid", 75, 151);
+		std::cout << "Valid grades:" << std::endl;
+		Form valid("Contract", 75, 50);
+		std::cout << valid << std::endl;
 	}
 	catch (std::exception &e) {
-		std::cerr << "Exception caught: " << e.what() << std::endl;
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+
+	try {
+		std::cout << "\nToo high grade:" << std::endl;
+		Form high("high", 0, 50);
+		std::cout << high << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+
+	try {
+		std::cout << "\nToo low grade:" << std::endl;
+		Form low("low", 75, 151);
+		std::cout << low << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 }
 
 void testFormSigning() {
-	std::cout << "\n=== Form Signing Tests ===" << std::endl;
+	std::cout << "\n---Form Signing---" << std::endl;
 	try {
-		Bureaucrat high("High", 1);
-		Bureaucrat low("Low", 150);
+		Bureaucrat king("King", 1);
+		Bureaucrat clown("Clown", 150);
 		Form form("Important", 50, 25);
 
+		std::cout << "\nForm before signing:" << std::endl;
 		std::cout << form << std::endl;
 		
-		std::cout << "\nTrying to sign with low grade bureaucrat:" << std::endl;
-		low.signForm(form);
+		std::cout << "\nSign Clown:" << std::endl;
+		clown.signForm(form);
+
+		std::cout << "\nForm after signing Clown:" << std::endl;
+		std::cout << form << std::endl;
 		
-		std::cout << "\nTrying to sign with high grade bureaucrat:" << std::endl;
-		high.signForm(form);
+		std::cout << "\nSign King:" << std::endl;
+		king.signForm(form);
 		
-		std::cout << "\nForm status after signing:" << std::endl;
+		std::cout << "\nForm after signing King:" << std::endl;
 		std::cout << form << std::endl;
 	}
 	catch (std::exception &e) {
-		std::cerr << "Exception caught: " << e.what() << std::endl;
+		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 }
 

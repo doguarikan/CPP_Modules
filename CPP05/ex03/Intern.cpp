@@ -2,6 +2,7 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include <stdexcept>
 
 Intern::Intern() {}
 
@@ -10,34 +11,39 @@ Intern::Intern(const Intern &other) {
 }
 
 Intern &Intern::operator=(const Intern &other) {
-    if (this != &other) {
-        // Intern has no attributes to copy
-    }
+    (void)other;
     return *this;
 }
 
 Intern::~Intern() {}
 
+static AForm* createShrubbery(const std::string &target)
+{
+	return new ShrubberyCreationForm(target);
+}
+
+static AForm* createRobotomy(const std::string &target)
+{
+	return new RobotomyRequestForm(target);
+}
+
+static AForm* createPresidentialPardon(const std::string &target)
+{
+	return new PresidentialPardonForm(target);
+}
+
 AForm* Intern::makeForm(const std::string &formName, const std::string &target) {
-    std::string lowerFormName = formName;
-    
-    for (size_t i = 0; i < lowerFormName.length(); i++)
-        lowerFormName[i] = std::tolower(lowerFormName[i]);
-    
-    if (lowerFormName == "shrubbery creation" || lowerFormName == "shrubberycreationform") {
-        std::cout << "Intern creates " << formName << std::endl;
-        return new ShrubberyCreationForm(target);
-    }
-    else if (lowerFormName == "robotomy request" || lowerFormName == "robotomyrequestform") {
-        std::cout << "Intern creates " << formName << std::endl;
-        return new RobotomyRequestForm(target);
-    }
-    else if (lowerFormName == "presidential pardon" || lowerFormName == "presidentialpardonform") {
-        std::cout << "Intern creates " << formName << std::endl;
-        return new PresidentialPardonForm(target);
-    }
-    else
-        throw FormNotFoundException();
+    const std::string FormTypes[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	AForm* (*FormCreators[3])(const std::string &) = {&createShrubbery, &createRobotomy, &createPresidentialPardon};
+
+	for (int i = 0; i < 3; i++)
+		if (formName == FormTypes[i])
+		{
+			std::cout << "Intern creates: " << formName << std::endl;
+			return FormCreators[i](target);
+		}
+
+	throw FormNotFoundException();
 }
 
 const char* Intern::FormNotFoundException::what() const throw() { return "Form not found!!"; }

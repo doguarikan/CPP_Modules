@@ -11,11 +11,11 @@ class PresidentialPardonForm : public AForm {
         PresidentialPardonForm();
         PresidentialPardonForm(const std::string& target);
         PresidentialPardonForm(const PresidentialPardonForm& other);
-        virtual ~PresidentialPardonForm();
+        ~PresidentialPardonForm();
         
         std::string getTarget() const;
 
-        virtual void execute(Bureaucrat const &executor) const;
+        void execute(Bureaucrat const &executor) const;
 };
 
 #endif

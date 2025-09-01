@@ -6,6 +6,7 @@
 #include "AForm.hpp"
 
 class Intern {
+    
     public:
         Intern();
         Intern(const Intern &other);

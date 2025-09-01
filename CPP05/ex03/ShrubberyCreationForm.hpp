@@ -11,14 +11,14 @@ class ShrubberyCreationForm : public AForm {
         ShrubberyCreationForm();
         ShrubberyCreationForm(const std::string& target);
         ShrubberyCreationForm(const ShrubberyCreationForm& other);
-        virtual ~ShrubberyCreationForm();
+        ~ShrubberyCreationForm();
         
         std::string getTarget() const;
 
-        virtual void execute(Bureaucrat const &executor) const;
+        void execute(Bureaucrat const &executor) const;
 
         class FileOpenException : public std::exception {
-            virtual const char* what() const throw();
+            const char* what() const throw();
         };
 };
 

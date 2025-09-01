@@ -1,5 +1,4 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -7,23 +6,22 @@
 #include <iostream>
 
 void testInternCreation() {
-    std::cout << "=== Intern Form Creation Test ===" << std::endl;
+    std::cout << "---Intern Form Creation Test---" << std::endl;
     try {
-        Intern someRandomIntern;
-        AForm* rrf;
+        Intern intern;
         
         std::cout << "Creating RobotomyRequestForm:" << std::endl;
-        rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-        std::cout << "Form created: " << *rrf << std::endl;
-        delete rrf;
+        AForm* robotomy = intern.makeForm("robotomy request", "Bender");
+        std::cout << "Form created: " << *robotomy << std::endl;
+        delete robotomy;
         
         std::cout << "\nCreating ShrubberyCreationForm:" << std::endl;
-        AForm* shrubbery = someRandomIntern.makeForm("shrubbery creation", "home");
+        AForm* shrubbery = intern.makeForm("shrubbery creation", "home");
         std::cout << "Form created: " << *shrubbery << std::endl;
         delete shrubbery;
         
         std::cout << "\nCreating PresidentialPardonForm:" << std::endl;
-        AForm* pardon = someRandomIntern.makeForm("presidential pardon", "Arthur Dent");
+        AForm* pardon = intern.makeForm("presidential pardon", "Arthur Dent");
         std::cout << "Form created: " << *pardon << std::endl;
         delete pardon;
         
@@ -34,31 +32,28 @@ void testInternCreation() {
 }
 
 void testInternInvalidForm() {
-    std::cout << "=== Intern Invalid Form Test ===" << std::endl;
+    std::cout << "---Intern Invalid Form Test---" << std::endl;
     try {
-        Intern someRandomIntern;
-        AForm* invalidForm;
+        Intern intern;
         
         std::cout << "Trying to create invalid form:" << std::endl;
-        invalidForm = someRandomIntern.makeForm("invalid form", "target");
+        intern.makeForm("invalid form type", "target");
         
     } catch (const std::exception& e) {
-        std::cout << "Expected exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception: " << e.what() << std::endl;
     }
     std::cout << std::endl;
 }
 
 void testInternWithBureaucrat() {
-    std::cout << "=== Intern + Bureaucrat Integration Test ===" << std::endl;
+    std::cout << "---Intern + Bureaucrat Integration Test---" << std::endl;
     try {
-        Intern someRandomIntern;
+        Intern intern;
         Bureaucrat president("President", 1);
         
-        // Create form using intern
-        AForm* pardon = someRandomIntern.makeForm("presidential pardon", "Marvin");
+        AForm* pardon = intern.makeForm("presidential pardon", "Marvin");
         std::cout << "Form created: " << *pardon << std::endl;
         
-        // Sign and execute with bureaucrat
         president.signForm(*pardon);
         president.executeForm(*pardon);
         
